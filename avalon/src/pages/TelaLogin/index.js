@@ -1,14 +1,55 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import {
+  View,
+  Text,
+  ImageBackground,
+  TextInput,
+  TouchableOpacity,
+  AsyncStorage,
+} from 'react-native';
 
-//import styles from 'styles';
+import styles from './styles';
 
 class TelaLogin extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      nick: null,
+    }
+  }
+
+  onPressButton = async () => {
+    await AsyncStorage.setItem('@avalon:nick', this.state.nick)
+    this.props.navigation.navigate('TelaJogo')
+  }
+
   render() {
     return (
-      <View>
-        <Text>Alo</Text>
-      </View>
+      <ImageBackground
+        source={require('img/login-background.png')}
+        style={{ width: '100%', height: '100%' }}
+        blurRadius={3}>
+        <View style={styles.container}>
+          <Text style={styles.text}>
+            Solyanka's Dream
+          </Text>
+
+          <TextInput
+            style={styles.input}
+            placeholder="Nickname"
+            underlineColorAndroid='rgba(0, 0, 0, 0)'
+            onChangeText={(nick) => this.setState({ nick })}
+          />
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={this.onPressButton}>
+            <Text style={styles.buttonText}>Unir-se</Text>
+          </TouchableOpacity>
+
+        </View>
+      </ImageBackground>
     );
   }
 }

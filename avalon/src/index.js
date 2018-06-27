@@ -9,14 +9,14 @@ export default class App extends Component {
   };
 
   async componentDidMount() {
-    const token = await AsyncStorage.getItem("@avalon:token")
-    this.appLoaded(token)
+    const nick = await AsyncStorage.getItem("@avalon:nick")
+    this.appLoaded(nick)
   }
 
-  appLoaded = (token) => {
+  appLoaded = (nick) => {
     this.setState({
       userChecked: true,
-      userLogged: !!token,
+      userLogged: !!nick,
     })
   }
 
