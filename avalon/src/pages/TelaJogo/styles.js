@@ -62,6 +62,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5
   },
 
+  apostas: {
+    width: 30,
+    height: 30,
+    borderRadius: 48,
+    backgroundColor: colors.secundary,
+    padding: 3, alignItems: 'center'
+  },
+
 });
 
 export default styles;
