@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
+    elevation: 2,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     width: '100%',
@@ -34,7 +35,35 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 
+  body: {
+    flexDirection: 'column',
+  },
+
+  containerPergunta: {
+    height: metrics.screenHeight * 0.2,
+    backgroundColor: colors.darker,
+  },
+
+  containerAlternativa: {
+    margin: metrics.baseMargin / 2,
+    backgroundColor: colors.darker,
+    height: metrics.screenHeight * 0.05,
+    width: metrics.screenWidth * 0.45,
+    borderRadius: metrics.baseRadius,
+    flexDirection: 'row'
+  },
+
+  alternativa: {
+    backgroundColor: colors.secundary,
+    borderRadius: 48,
+    padding: 5,
+    color: colors.primary,
+    paddingHorizontal: 10,
+    fontWeight: 'bold'
+  },
+
   footer: {
+    elevation: 2,
     justifyContent: 'space-evenly',
     height: metrics.screenHeight * 0.17,
     width: '100%',
@@ -68,6 +97,12 @@ const styles = StyleSheet.create({
     borderRadius: 48,
     backgroundColor: colors.secundary,
     padding: 3, alignItems: 'center'
+  },
+
+  signals: {
+    fontWeight: 'bold',
+    fontSize: metrics.screenHeight * 0.04,
+    color: colors.secundary
   },
 
 });
