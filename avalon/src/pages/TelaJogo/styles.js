@@ -7,7 +7,7 @@ import { colors, metrics } from 'styles';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between'
+    justifyContent: 'space-around'
   },
 
   header: {
@@ -37,20 +37,50 @@ const styles = StyleSheet.create({
 
   body: {
     flexDirection: 'column',
+    justifyContent: 'space-between',
+    height: metrics.screenHeight * 0.619
   },
 
   containerPergunta: {
     height: metrics.screenHeight * 0.2,
-    backgroundColor: colors.darker,
+    backgroundColor: colors.redDarker,
+  },
+
+  textPergunta: {
+    padding: 3,
+    color: colors.white,
+    fontSize: metrics.screenHeight * 0.021,
+  },
+
+  containerGeralAlternativas: {
+    height: metrics.screenHeight * 0.2,
+    backgroundColor: colors.white,
+    justifyContent: 'center',
+    borderBottomWidth: 5,
+    borderTopWidth: 5,
+    borderColor: colors.primary
+  },
+
+  containerAlternativaLinha: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
   },
 
   containerAlternativa: {
     margin: metrics.baseMargin / 2,
-    backgroundColor: colors.darker,
+    backgroundColor: colors.primary,
     height: metrics.screenHeight * 0.05,
     width: metrics.screenWidth * 0.45,
     borderRadius: metrics.baseRadius,
     flexDirection: 'row'
+  },
+
+  respostaAlternativa: {
+    fontSize: metrics.screenHeight * 0.02,
+    color: colors.white,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    marginLeft: 2,
   },
 
   alternativa: {
@@ -62,13 +92,31 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
 
+  containerMsgStalin: {
+    backgroundColor: colors.white,
+    width: metrics.screenWidth * 0.6,
+    height: metrics.screenHeight * 0.13,
+    borderRadius: 3,
+    borderWidth: 2,
+    borderColor: colors.secundary,
+    alignSelf: 'center'
+  },
+
+  textMsgStalin: {
+    fontSize: metrics.screenHeight * 0.02,
+    color: colors.terciary,
+    padding: 2,
+  },  
+
   footer: {
     elevation: 2,
     justifyContent: 'space-evenly',
-    height: metrics.screenHeight * 0.17,
+    height: metrics.screenHeight * 0.18,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
+    borderTopWidth: 3,
+    borderColor: colors.primary
   },
 
   containerAposta: {
@@ -88,7 +136,8 @@ const styles = StyleSheet.create({
   buttonApostar: {
     borderRadius: metrics.baseRadius,
     backgroundColor: colors.secundary,
-    paddingHorizontal: 5
+    paddingVertical: 3,
+    paddingHorizontal: 7,
   },
 
   apostas: {

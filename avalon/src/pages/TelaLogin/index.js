@@ -32,12 +32,12 @@ class TelaLogin extends Component {
         blurRadius={3}>
         <View style={styles.container}>
           <Text style={styles.text}>
-            Solyanka's Dream
+            Solyankas Dream
           </Text>
 
           <TextInput
             style={styles.input}
-            placeholder="Nickname"
+            placeholder="nickname"
             underlineColorAndroid='rgba(0, 0, 0, 0)'
             onChangeText={(nick) => this.setState({ nick })}
           />

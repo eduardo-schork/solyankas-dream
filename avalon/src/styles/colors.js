@@ -10,11 +10,11 @@ export default {
   primary: '#ff1a1a',
   secundary: '#ffcc00',
   terciary: '#000',
-  terciaryDarker: 'rgba(0, 149, 240, 0.8)',
   green: '#00b73d',
   pink: '#9C2FD2',
   yellow: '#ffcc00',
   red: '#ff1a1a',
+  redDarker: '#990000',
   success: '#9DCA93',
   error: '#E37A7A',
 
