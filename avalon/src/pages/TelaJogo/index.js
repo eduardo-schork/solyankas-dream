@@ -23,7 +23,7 @@ class TelaJogo extends Component {
     this.state = {
       nick: null,
       solyankas: 3,
-      apostados: 0,
+      apostados: 1,
       multiplicador: '',
       buttonApostas: false,
       buttonIr: true,
@@ -46,7 +46,7 @@ class TelaJogo extends Component {
 
   desistir = async () => {
     await AsyncStorage.removeItem('@avalon:nick')
-    this.props.navigation.navigate("Login")
+    this.props.navigation.navigate("TelaDesistir")
   }
 
   addAposta = () => {
@@ -93,7 +93,7 @@ class TelaJogo extends Component {
           buttonApostas: false,
           buttonIr: true,
           buttonRoullete: true,
-          apostados: 0,
+          apostados: 1,
           multiplicador: '',
         }))
       }
@@ -134,7 +134,7 @@ class TelaJogo extends Component {
       const pontos = this.state.apostados * this.state.multiplicador
       this.setState(prevState => ({
         solyankas: prevState.solyankas + pontos, apostados: 0,
-        apostados: '',
+        apostados: 1,
         multiplicador: '',
         buttonApostas: false,
         pergunta: '',
@@ -149,7 +149,7 @@ class TelaJogo extends Component {
       this.setState(prevState => ({
         solyankas: prevState.solyankas - prevState.apostados,
         multiplicador: '',
-        apostados: '',
+        apostados: 1,
         buttonApostas: false,
         pergunta: '',
         alternativaA: '',
@@ -162,7 +162,7 @@ class TelaJogo extends Component {
     }
   }
 
-  perdeu =  async () => {
+  perdeu = async () => {
     Alert.alert(
       "0 solyankas + fome = morte",
       "Porra soldado, você jogou mal e perdeu todos os seus Solyankas, agora vai morrer de fome, não foi dessa vez.\nMas lembre-se salvador Stalin guardou um lugar no céu para você.",
@@ -186,20 +186,28 @@ class TelaJogo extends Component {
           source={require('img/header-background.png')}
           style={styles.header}>
 
-          <View style={styles.containerHeader}>
-            <Text style={styles.headerText}>Camarada</Text>
-            <Text style={styles.headerText}>{this.state.nick}</Text>
-          </View>
+          <ImageBackground
+          source={require('img/header-russian.png')}
+          style={styles.containerHeader}>
+            <Text style={[styles.headerText, { color: colors.secundary }]}>Camarada</Text>
+            <Text style={[styles.headerText, { color: colors.secundary }]}>{this.state.nick}</Text>
+          </ImageBackground>
 
-          <View style={styles.containerHeader}>
-            <Text style={styles.headerText}>Solyankas</Text>
-            <Text style={styles.headerText}>{this.state.solyankas}</Text>
-          </View>
+          <ImageBackground
+          source={require('img/header-solyanka.png')}
+          style={styles.containerHeader}>
+            <Text style={[styles.headerText, { color: colors.white }]}>Solyankas</Text>
+            <Text style={[styles.headerText, { color: colors.white }]}>{this.state.solyankas}</Text>
+          </ImageBackground>
 
           <TouchableOpacity
             style={[styles.containerHeader, { justifyContent: 'center' }]}
-            onPress={this.desistir}>
-            <Text style={styles.headerText}>Desistir</Text>
+            onPress={() => this.desistir()}>
+            <ImageBackground
+              style={{ width: '100%', height: '100%', justifyContent: 'center' }}
+              source={require('img/header-lgbt.png')}>
+              <Text style={[styles.headerText, { color: colors.darker }]}>Desistir</Text>
+            </ImageBackground>
           </TouchableOpacity>
         </ImageBackground>
         {/*header*/}
@@ -316,10 +324,10 @@ class TelaJogo extends Component {
             disabled={this.state.buttonRoullete}
             onPress={() => this.roletar()}>
             <ImageBackground
-              style={{ width: metrics.screenWidth * 0.3, height: metrics.screenHeight * 0.25, justifyContent: 'center' }}
+              style={{ width: metrics.screenWidth * 0.2, height: metrics.screenHeight * 0.12, justifyContent: 'center' }}
               source={require('img/footer-roullete.png')}
             >
-              <Text style={{ alignSelf: 'center', color: colors.black, fontWeight: 'bold', fontSize: metrics.screenHeight * 0.02 }}>{this.state.multiplicador}x</Text>
+              <Text style={{ alignSelf: 'center', color: colors.secundary, fontWeight: 'bold', fontSize: metrics.screenHeight * 0.02 }}>{this.state.multiplicador}x</Text>
             </ImageBackground>
           </TouchableOpacity>
           {/*roullete*/}

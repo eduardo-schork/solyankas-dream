@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   },
 
   headerText: {
+    alignSelf: 'center',
     color: colors.primary,
     fontWeight: 'bold',
     fontSize: metrics.screenHeight * 0.02,
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     fontSize: metrics.screenHeight * 0.02,
     color: colors.terciary,
     padding: 2,
-  },  
+  },
 
   footer: {
     elevation: 2,
