@@ -21,7 +21,7 @@ class TelaLogin extends Component {
 
   onPressButton = async () => {
     await AsyncStorage.setItem('@avalon:nick', this.state.nick)
-    this.props.navigation.navigate('TelaJogo')
+    this.props.navigation.navigate('TelaTutorial')
   }
 
   render() {

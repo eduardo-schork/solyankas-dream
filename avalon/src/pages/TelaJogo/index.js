@@ -187,26 +187,26 @@ class TelaJogo extends Component {
           style={styles.header}>
 
           <ImageBackground
-          source={require('img/header-russian.png')}
-          style={styles.containerHeader}>
-            <Text style={[styles.headerText, { color: colors.secundary }]}>Camarada</Text>
-            <Text style={[styles.headerText, { color: colors.secundary }]}>{this.state.nick}</Text>
+            source={require('img/header-russian.png')}
+            style={styles.containerHeader}>
+            <Text style={styles.headerText}>Camarada</Text>
+            <Text style={styles.headerText}>{this.state.nick}</Text>
           </ImageBackground>
 
           <ImageBackground
-          source={require('img/header-solyanka.png')}
-          style={styles.containerHeader}>
-            <Text style={[styles.headerText, { color: colors.white }]}>Solyankas</Text>
-            <Text style={[styles.headerText, { color: colors.white }]}>{this.state.solyankas}</Text>
+            source={require('img/header-solyanka.png')}
+            style={styles.containerHeader}>
+            <Text style={styles.headerText}>Solyankas</Text>
+            <Text style={styles.headerText}>{this.state.solyankas}</Text>
           </ImageBackground>
 
           <TouchableOpacity
-            style={[styles.containerHeader, { justifyContent: 'center' }]}
+            style={styles.containerHeader}
             onPress={() => this.desistir()}>
             <ImageBackground
-              style={{ width: '100%', height: '100%', justifyContent: 'center' }}
+              style={{ width: '100%', height: '100%', justifyContent: 'center', borderRadius: 3 }}
               source={require('img/header-lgbt.png')}>
-              <Text style={[styles.headerText, { color: colors.darker }]}>Desistir</Text>
+              <Text style={styles.headerText}>Desistir</Text>
             </ImageBackground>
           </TouchableOpacity>
         </ImageBackground>
@@ -264,7 +264,7 @@ class TelaJogo extends Component {
 
           {/*stalinsite*/}
           <ImageBackground
-            style={{ width: '100%', height: metrics.screenHeight * 0.22, borderBottomWidth: 10, justifyContent: 'center', borderColor: colors.secundary }}
+            style={styles.stalinSite}
             source={require('img/body-greenfield.png')}>
             <View style={{ justifyContent: 'space-evenly', flexDirection: 'row' }}>
               <View style={styles.containerMsgStalin}>

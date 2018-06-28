@@ -15,35 +15,39 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     width: '100%',
-    height: metrics.screenHeight * 0.1,
+    height: metrics.screenHeight * 0.15,
     backgroundColor: colors.lighter,
   },
 
   headerText: {
+    backgroundColor: colors.primary,
+    padding: 1,
+    borderRadius: 5,
     alignSelf: 'center',
-    color: colors.primary,
+    color: colors.secundary,
     fontWeight: 'bold',
     fontSize: metrics.screenHeight * 0.02,
   },
 
   containerHeader: {
+    borderRadius: 3,
     padding: 2,
-    borderRadius: metrics.baseRadius,
     width: metrics.screenWidth * 0.3,
-    height: metrics.screenHeight * 0.06,
+    height: metrics.screenHeight * 0.1,
     alignItems: 'center',
     backgroundColor: colors.secundary,
     alignSelf: 'center',
+    justifyContent: 'center',
   },
 
   body: {
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: metrics.screenHeight * 0.619
+    justifyContent: 'space-evenly',
+    height: metrics.screenHeight * 0.68,
   },
 
   containerPergunta: {
-    height: metrics.screenHeight * 0.2,
+    height: metrics.screenHeight * 0.23,
     backgroundColor: colors.redDarker,
   },
 
@@ -93,10 +97,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
 
+  stalinSite: {
+    width: '100%',
+    height: metrics.screenHeight * 0.25,
+    borderBottomWidth: 10,
+    justifyContent: 'center',
+    borderColor: colors.secundary
+  },
+
   containerMsgStalin: {
     backgroundColor: colors.white,
     width: metrics.screenWidth * 0.6,
-    height: metrics.screenHeight * 0.13,
+    height: metrics.screenHeight * 0.15,
     borderRadius: 3,
     borderWidth: 2,
     borderColor: colors.secundary,
@@ -112,7 +124,7 @@ const styles = StyleSheet.create({
   footer: {
     elevation: 2,
     justifyContent: 'space-evenly',
-    height: metrics.screenHeight * 0.18,
+    height: metrics.screenHeight * 0.22,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
