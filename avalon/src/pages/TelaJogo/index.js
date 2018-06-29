@@ -56,7 +56,7 @@ class TelaJogo extends Component {
   }
 
   removeAposta = () => {
-    if (!(this.state.apostados - 1 < 0)) {
+    if (!(this.state.apostados - 1 < 1)) {
       this.setState(prevState => ({ apostados: prevState.apostados - 1 }))
     }
   }
@@ -320,16 +320,19 @@ class TelaJogo extends Component {
           <Text style={styles.signals}>X</Text>
 
           {/*roullete*/}
-          <TouchableOpacity
-            disabled={this.state.buttonRoullete}
-            onPress={() => this.roletar()}>
-            <ImageBackground
-              style={{ width: metrics.screenWidth * 0.2, height: metrics.screenHeight * 0.12, justifyContent: 'center' }}
-              source={require('img/footer-roullete.png')}
-            >
-              <Text style={{ alignSelf: 'center', color: colors.secundary, fontWeight: 'bold', fontSize: metrics.screenHeight * 0.02 }}>{this.state.multiplicador}x</Text>
-            </ImageBackground>
-          </TouchableOpacity>
+          <View>
+            <Text style={{ alignSelf: 'center', fontWeight: 'bold', fontSize: metrics.screenHeight * 0.02, color: colors.black }}>ROLETA RUSSA</Text>
+            <TouchableOpacity
+              disabled={this.state.buttonRoullete}
+              onPress={() => this.roletar()}>
+              <ImageBackground
+                style={{ width: metrics.screenWidth * 0.2, height: metrics.screenHeight * 0.12, justifyContent: 'center', alignSelf: 'center' }}
+                source={require('img/footer-roullete.png')}
+              >
+                <Text style={{ alignSelf: 'center', color: colors.secundary, fontWeight: 'bold', fontSize: metrics.screenHeight * 0.02 }}>{this.state.multiplicador}x</Text>
+              </ImageBackground>
+            </TouchableOpacity>
+          </View>
           {/*roullete*/}
 
           <Text style={styles.signals}>=</Text>

@@ -14,8 +14,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    width: '100%',
-    height: metrics.screenHeight * 0.15,
+    height: metrics.screenHeight * 0.12,
     backgroundColor: colors.lighter,
   },
 
@@ -42,12 +41,11 @@ const styles = StyleSheet.create({
 
   body: {
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    height: metrics.screenHeight * 0.68,
+    height: metrics.screenHeight * 0.65,
   },
 
   containerPergunta: {
-    height: metrics.screenHeight * 0.23,
+    height: metrics.screenHeight * 0.2,
     backgroundColor: colors.redDarker,
   },
 
@@ -100,9 +98,7 @@ const styles = StyleSheet.create({
   stalinSite: {
     width: '100%',
     height: metrics.screenHeight * 0.25,
-    borderBottomWidth: 10,
     justifyContent: 'center',
-    borderColor: colors.secundary
   },
 
   containerMsgStalin: {
@@ -124,7 +120,7 @@ const styles = StyleSheet.create({
   footer: {
     elevation: 2,
     justifyContent: 'space-evenly',
-    height: metrics.screenHeight * 0.22,
+    height: metrics.screenHeight * 0.2,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
