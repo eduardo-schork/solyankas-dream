@@ -133,7 +133,7 @@ class TelaJogo extends Component {
     if (this.state.resposta == alternativa) {
       const pontos = this.state.apostados * this.state.multiplicador
       this.setState(prevState => ({
-        solyankas: prevState.solyankas + pontos, apostados: 0,
+        solyankas: prevState.solyankas + pontos,
         apostados: 1,
         multiplicador: '',
         buttonApostas: false,
@@ -148,8 +148,8 @@ class TelaJogo extends Component {
     } else {
       this.setState(prevState => ({
         solyankas: prevState.solyankas - prevState.apostados,
-        multiplicador: '',
         apostados: 1,
+        multiplicador: '',
         buttonApostas: false,
         pergunta: '',
         alternativaA: '',
@@ -158,14 +158,18 @@ class TelaJogo extends Component {
         alternativaD: '',
         resposta: '',
         stalinMsg: falas[1],
-      }))
+      }), () => {
+        if (this.state.solyankas == 0) {
+          this.perdeu()
+        }
+      })
     }
   }
 
   perdeu = async () => {
     Alert.alert(
       "0 solyankas + fome = morte",
-      "Porra soldado, você jogou mal e perdeu todos os seus Solyankas, agora vai morrer de fome, não foi dessa vez.\nMas lembre-se salvador Stalin guardou um lugar no céu para você.",
+      "Porra soldado, você jogou mal e perdeu todos os seus Solyankas, agora vai morrer de fome, não foi dessa vez.\nMas lembre-se: salvador Stalin guardou um lugar no céu para você.",
       [
         {
           text: 'Perdeu otário', onPress: () => {
@@ -211,8 +215,6 @@ class TelaJogo extends Component {
           </TouchableOpacity>
         </ImageBackground>
         {/*header*/}
-
-        {this.state.solyankas == 0 ? this.perdeu() : null}
 
         {/*body*/}
         <View style={styles.body}>

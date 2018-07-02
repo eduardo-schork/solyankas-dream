@@ -7,14 +7,40 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import steps from './src/steps';
+import texto from './src/steps';
 import styles from './styles';
 import { colors, metrics } from 'styles';
 class TelaJogo extends Component {
   constructor() {
     super();
     this.state = {
-      texto: steps[0],
+      step: 0,
+    }
+  }
+
+  removeStep = () => {
+    if ((this.state.step - 1 < 1)) {
+      if (this.state.step == 1) {
+        this.setState(prevState => ({
+          step: prevState.step - 1,
+          botaoBack: false
+        }))
+      } else {
+        this.setState({ botaoBack: false })
+      }
+    } else {
+      this.setState(prevState => ({ step: prevState.step - 1 }))
+    }
+  }
+
+  addStep = () => {
+    if (this.state.step + 1 > 6) {
+      this.props.navigation.navigate('TelaJogo')
+    } else {
+      this.setState(prevState => ({
+        step: prevState.step + 1,
+        botaoBack: true
+      }))
     }
   }
 
@@ -29,14 +55,24 @@ class TelaJogo extends Component {
             <Image />
           </View>
           <View style={styles.containerChat}>
-            <Text style={styles.textChat}>{this.state.texto}</Text>
+            <Text style={styles.textChat}>{texto[this.state.step]}</Text>
           </View>
         </View>
-        <TouchableOpacity
-          style={styles.buttonNext}
-          onPress={() => {}}>
-          <Text style={styles.textNext}>следующий >></Text>
-        </TouchableOpacity>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+          {this.state.botaoBack ? <TouchableOpacity
+            style={[styles.buttonNext, { alignSelf: 'flex-start', }]}
+            onPress={() => this.removeStep()}>
+            <Text style={styles.textNext}>{'<< назад'}</Text>
+          </TouchableOpacity> : null}
+
+          <TouchableOpacity
+            style={styles.buttonNext}
+            onPress={() => this.addStep()}>
+            <Text style={styles.textNext}>следующий >></Text>
+          </TouchableOpacity>
+
+        </View>
+
       </View>
     );
   }

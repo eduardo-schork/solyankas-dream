@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 
   stalinImg: {
     height: metrics.screenHeight * 0.7,
-    width: metrics.screenWidth * 0.7
+    width: metrics.screenWidth * 0.8
   },
 
   containerChat: {
