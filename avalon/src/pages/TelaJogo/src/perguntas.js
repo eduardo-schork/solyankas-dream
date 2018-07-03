@@ -44,7 +44,7 @@ export default [
         alternativaA: 'Centenas',
         alternativaB: 'Vinte',
         alternativaC: 'Milhares',
-        alternativaD: 'Trilhares',
+        alternativaD: 'Infinitas',
         resposta: 'd'
     },
     {

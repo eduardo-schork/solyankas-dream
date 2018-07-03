@@ -6,9 +6,11 @@ import {
   TextInput,
   TouchableOpacity,
   AsyncStorage,
+  ActivityIndicator,
 } from 'react-native';
 
 import styles from './styles';
+import { colors } from 'styles';
 
 class TelaLogin extends Component {
 
@@ -16,11 +18,16 @@ class TelaLogin extends Component {
     super();
     this.state = {
       nick: null,
+      carregando: false,
     }
   }
 
   onPressButton = async () => {
+    if (!this.state.nick) { return }
+
+    this.setState({ carregando: true })
     await AsyncStorage.setItem('@avalon:nick', this.state.nick)
+    await AsyncStorage.setItem('@avalon:solyankas', '3')
     this.props.navigation.navigate('TelaTutorial')
   }
 
@@ -45,7 +52,7 @@ class TelaLogin extends Component {
           <TouchableOpacity
             style={styles.button}
             onPress={this.onPressButton}>
-            <Text style={styles.buttonText}>Unir-se</Text>
+            {this.state.carregando ? <ActivityIndicator size="small" color={colors.secundary} /> : <Text style={styles.buttonText}>Unir-se</Text>}
           </TouchableOpacity>
 
         </View>

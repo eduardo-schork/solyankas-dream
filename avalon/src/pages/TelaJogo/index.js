@@ -7,13 +7,14 @@ import {
   TouchableOpacity,
   Image,
   Alert,
-  BackHandler
+  BackHandler,
+  Vibration,
 } from 'react-native';
 
 import styles from './styles';
 import { colors, metrics } from 'styles';
 
-const vetorChances = [1, 2, 3, 0, 1, 1];
+const vetorChances = [1, 2, 1, 0, 1, 1];
 
 import perguntas from './src/perguntas';
 import falas from './src/falas_stalin';
@@ -22,7 +23,7 @@ class TelaJogo extends Component {
     super();
     this.state = {
       nick: null,
-      solyankas: 3,
+      solyankas: null,
       apostados: 1,
       multiplicador: '',
       buttonApostas: false,
@@ -41,11 +42,14 @@ class TelaJogo extends Component {
   }
 
   async componentDidMount() {
-    this.setState({ nick: await AsyncStorage.getItem('@avalon:nick') })
+    this.setState({
+      nick: await AsyncStorage.getItem('@avalon:nick'),
+      solyankas: Number(await AsyncStorage.getItem('@avalon:solyankas'))
+    })
   }
 
   desistir = async () => {
-    await AsyncStorage.removeItem('@avalon:nick')
+    await AsyncStorage.clear()
     this.props.navigation.navigate("TelaDesistir")
   }
 
@@ -68,18 +72,17 @@ class TelaJogo extends Component {
     })
   }
 
-  roletar = () => {
+  roletar = async () => {
     this.setState({
       buttonRoullete: true,
       buttonIr: false,
     })
     const random = Math.floor(Math.random() * 6)
     const multiplicador = vetorChances[random]
-    this.setState({ multiplicador: multiplicador })
-    setTimeout(() => {
+    this.setState({ multiplicador: multiplicador }, async () => {
       if (multiplicador == 0) {
         Alert.alert(
-          'Soldado',
+          'Zerou a roleta',
           "Você bobeou e os nazistas pegaram seus Solyanka's apostados. Otário.",
           [
             {
@@ -88,20 +91,24 @@ class TelaJogo extends Component {
           ],
           { cancelable: false }
         )
-        this.setState(prevState => ({
-          solyankas: prevState.solyankas - this.state.apostados,
-          buttonApostas: false,
-          buttonIr: true,
-          buttonRoullete: true,
-          apostados: 1,
-          multiplicador: '',
-        }))
+        if ((this.state.solyankas - this.state.apostados) == 0) {
+          this.perdeu()
+        } else {
+          await this.setState(prevState => ({
+            solyankas: prevState.solyankas - this.state.apostados,
+            buttonApostas: false,
+            buttonIr: true,
+            buttonRoullete: true,
+            apostados: 1,
+            multiplicador: '',
+          }), async () => await AsyncStorage.setItem('@avalon:solyankas', (this.state.solyankas.toString())))
+        }
       }
-    }, 500);
+    })
   }
 
 
-  ir = () => {
+  ir = async () => {
     this.setState({
       buttonIr: true,
       buttonAlternativas: false,
@@ -126,13 +133,13 @@ class TelaJogo extends Component {
     })
   }
 
-  verificarResposta = (alternativa) => {
+  verificarResposta = async (alternativa) => {
     this.setState({
       buttonAlternativas: true,
     })
     if (this.state.resposta == alternativa) {
       const pontos = this.state.apostados * this.state.multiplicador
-      this.setState(prevState => ({
+      await this.setState(prevState => ({
         solyankas: prevState.solyankas + pontos,
         apostados: 1,
         multiplicador: '',
@@ -144,9 +151,12 @@ class TelaJogo extends Component {
         alternativaD: '',
         resposta: '',
         stalinMsg: falas[2],
-      }))
+      }), async () => {
+        Vibration.vibrate(1500)
+        await AsyncStorage.setItem('@avalon:solyankas', (this.state.solyankas.toString()))
+      })
     } else {
-      this.setState(prevState => ({
+      await this.setState(prevState => ({
         solyankas: prevState.solyankas - prevState.apostados,
         apostados: 1,
         multiplicador: '',
@@ -158,9 +168,12 @@ class TelaJogo extends Component {
         alternativaD: '',
         resposta: '',
         stalinMsg: falas[1],
-      }), () => {
+      }), async () => {
+        Vibration.vibrate([1000, 200, 1000, 200, 2000])
         if (this.state.solyankas == 0) {
           this.perdeu()
+        } else {
+          await AsyncStorage.setItem('@avalon:solyankas', (this.state.solyankas.toString()))
         }
       })
     }
